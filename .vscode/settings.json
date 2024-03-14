@@ -1,0 +1,16 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/cmu_time_awb.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/cmu_us_kal.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/cmudict04.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/en_us.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/freetts-jsapi10.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/cmulex.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/cmutimelex.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/jsapi.jar",
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/mbrola.jar"
+    ]
+}
