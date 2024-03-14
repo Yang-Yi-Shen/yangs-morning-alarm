@@ -11,6 +11,7 @@
         "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/cmulex.jar",
         "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/cmutimelex.jar",
         "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/jsapi.jar",
-        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/mbrola.jar"
+        "/Users/yangyi/Desktop/freetts/freetts-1.2/lib/mbrola.jar",
+        "/Users/yangyi/Desktop/json-20240205.jar"
     ]
 }
