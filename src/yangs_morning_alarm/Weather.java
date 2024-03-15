@@ -32,15 +32,41 @@ public class Weather {
             parsedTimeArray[i] = hour + ":00";
         }
 
-        // turn temperature & humidity arrays into arrays of normal datatypes, as opposed to JSON arrays
+        // turn temperature & humidity arrays into arrays of normal datatypes, as
+        // opposed to JSON arrays
         double[] tempArray = new double[rawTempArray.length()];
         for (int i = 0; i < rawTempArray.length(); i++) {
             tempArray[i] = rawTempArray.getDouble(i);
-            System.out.println(tempArray[i]);
         }
         int[] humidityArray = new int[rawHumidityArray.length()];
         for (int i = 0; i < rawHumidityArray.length(); i++) {
             humidityArray[i] = rawHumidityArray.getInt(i);
         }
+
+        // find highest temperature of the day, and temperature when I wake up
+        double maxTemp = 0;
+        double wakeUpTemp;
+
+        for (double temp : tempArray) {
+            if (temp > maxTemp) {
+                maxTemp = temp;
+            }
+        }
+        wakeUpTemp = tempArray[7];
+
+        // find avg. humidity of the day, and humidity when I wake up
+        int avgHumidity;
+        int wakeUpHumidity;
+        int totalHumidity = 0;
+
+        for (int humidity : humidityArray) {
+            totalHumidity += humidity;
+        }
+        avgHumidity = totalHumidity / humidityArray.length;
+        wakeUpHumidity = humidityArray[7];
+
+        System.out.println("\nYang's Weather Forecast!\n--------------------");
+        System.out.printf("Highest temperature: %f\n7AM temperature: %f\nAverage humidity: %d\n7AM humidity: %d\n\n",
+                maxTemp, wakeUpTemp, avgHumidity, wakeUpHumidity);
     }
 }
