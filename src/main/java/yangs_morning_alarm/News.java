@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.http.*;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class News {
     public static String[] getHeadlines() throws Exception {
