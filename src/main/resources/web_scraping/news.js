@@ -1,8 +1,8 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 // get top 3 news headlines of the day from Taiwan News
-export default async function news() {
+async function news() {
     const url = "https://www.taiwannews.com.tw/en/index";
 
     const response = await axios.get(url);
@@ -23,3 +23,5 @@ export default async function news() {
 
     return headlines;
 }
+
+module.exports = news;

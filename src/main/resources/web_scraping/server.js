@@ -1,7 +1,7 @@
-import express from "express";
+const express = require("express");
 
 // import homemade functions
-import news from "./news.js";
+const news = require("./news.js");
 
 const app = express();
 const PORT = 6900;
