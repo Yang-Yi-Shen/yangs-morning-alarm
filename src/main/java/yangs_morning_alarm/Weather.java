@@ -2,13 +2,13 @@ package yangs_morning_alarm;
 
 import java.net.URI;
 import java.net.http.*;
+import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Weather {
-    // rename main function to getWeatherData later
-    public static void main(String[] args) throws Exception {
+    public static ArrayList<Object> getWeatherData() throws Exception {
         String url = "https://api.open-meteo.com/v1/cma?latitude=22.6163&longitude=120.3133&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FSingapore&forecast_days=1";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -19,10 +19,10 @@ public class Weather {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        JSONObject weatherData = new JSONObject(response.body());
-        JSONArray rawTimeArray = weatherData.getJSONObject("hourly").getJSONArray("time");
-        JSONArray rawTempArray = weatherData.getJSONObject("hourly").getJSONArray("temperature_2m");
-        JSONArray rawHumidityArray = weatherData.getJSONObject("hourly").getJSONArray("relative_humidity_2m");
+        JSONObject rawWeatherData = new JSONObject(response.body());
+        JSONArray rawTimeArray = rawWeatherData.getJSONObject("hourly").getJSONArray("time");
+        JSONArray rawTempArray = rawWeatherData.getJSONObject("hourly").getJSONArray("temperature_2m");
+        JSONArray rawHumidityArray = rawWeatherData.getJSONObject("hourly").getJSONArray("relative_humidity_2m");
 
         // convert time units from <date>T<time> to just <time> format
         String[] parsedTimeArray = new String[rawTimeArray.length()];
@@ -43,13 +43,15 @@ public class Weather {
             humidityArray[i] = rawHumidityArray.getInt(i);
         }
 
-        // find highest temperature of the day, and temperature when I wake up
+        // find highest temperature of the day & time of highest temperature of the day, and temperature when I wake up
         double maxTemp = 0;
+        String maxTempTime = "00:00";
         double wakeUpTemp;
 
-        for (double temp : tempArray) {
-            if (temp > maxTemp) {
-                maxTemp = temp;
+        for (int i = 0; i < tempArray.length; i++) {
+            if (tempArray[i] > maxTemp) {
+                maxTemp = tempArray[i];
+                maxTempTime = parsedTimeArray[i];
             }
         }
         wakeUpTemp = tempArray[7];
@@ -65,8 +67,13 @@ public class Weather {
         avgHumidity = totalHumidity / humidityArray.length;
         wakeUpHumidity = humidityArray[7];
 
-        System.out.println("\nYang's Weather Forecast!\n--------------------");
-        System.out.printf("Highest temperature: %f\n7AM temperature: %f\nAverage humidity: %d\n7AM humidity: %d\n\n",
-                maxTemp, wakeUpTemp, avgHumidity, wakeUpHumidity);
+        ArrayList<Object> weatherData = new ArrayList<Object>();
+        weatherData.add(wakeUpTemp);
+        weatherData.add(wakeUpHumidity);
+        weatherData.add(maxTemp);
+        weatherData.add(maxTempTime);
+        weatherData.add(avgHumidity);
+
+        return weatherData;
     }
 }

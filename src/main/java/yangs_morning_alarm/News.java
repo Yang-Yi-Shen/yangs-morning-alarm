@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class News {
-    public static void main(String[] args) throws Exception {
+    public static String[] getHeadlines() throws Exception {
         String url = "https://yangs-morning-alarm.vercel.app/api/news";
 
         HttpClient client = HttpClient.newHttpClient();
@@ -25,8 +25,6 @@ public class News {
             headlinesArray[i] = rawHeadlinesArray.getString(i);
         }
 
-        for (String headline : headlinesArray) {
-            System.out.println(headline);
-        }
+        return headlinesArray;
     }
 }
