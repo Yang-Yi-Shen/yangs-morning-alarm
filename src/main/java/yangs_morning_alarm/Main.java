@@ -19,10 +19,10 @@ public class Main {
         // get news headlines and format into string
         String[] headlinesArray = News.getHeadlines();
         String newsReport = String.format(
-            "The latest news stories for this morning are: 1: %s. 2: %s. 3: %s",
+            "The latest news stories for this morning are: 1: %s. 2: %s. 3: %s.\n",
             headlinesArray[0], headlinesArray[1], headlinesArray[2]);
 
         System.out.println(weatherReport + newsReport);
-        new TextToSpeech(weatherReport + newsReport);
+        new TextToSpeech("Good morning Yang. " + weatherReport + newsReport + "That is the end of this informative morning report. I hope you have a great day.");
     }
 }
