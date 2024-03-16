@@ -13,9 +13,16 @@ public class Main {
         int avgHumidity = (int) weatherData.get(4);
 
         String weatherReport = String.format(
-                "The current temperature is %.1f degrees. The current humidity is %d percent. Today's temperature will peak at %.2f degrees, at around %s o'clock. The day's average humidity will be %d percent.",
-                wakeUpTemp, wakeUpHumidity, maxTemp, maxTempTime, avgHumidity);
+            "The current temperature is %.1f degrees. The current humidity is %d percent. Today's temperature will peak at %.1f degrees, at around %s o'clock. The day's average humidity will be %d percent.\n",
+            wakeUpTemp, wakeUpHumidity, maxTemp, maxTempTime, avgHumidity);
 
-        new TextToSpeech(weatherReport);
+        // get news headlines and format into string
+        String[] headlinesArray = News.getHeadlines();
+        String newsReport = String.format(
+            "The latest news stories for this morning are: 1: %s. 2: %s. 3: %s",
+            headlinesArray[0], headlinesArray[1], headlinesArray[2]);
+
+        System.out.println(weatherReport + newsReport);
+        new TextToSpeech(weatherReport + newsReport);
     }
 }
